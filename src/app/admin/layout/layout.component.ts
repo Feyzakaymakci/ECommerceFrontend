@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AlertifyOptions, AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
+
+declare var alertify:any;
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
+
+  constructor(private alertify:AlertifyService) {}
+
+  ngOnInit(): void {
+    this.alertify.message("Merhaba",{
+      messageType:MessageType.Success,
+      delay:5,
+      position:Position.TopRight
+    })
+  }
 
 }
+alertify.alert('Ready!');

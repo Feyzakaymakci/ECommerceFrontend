@@ -11,7 +11,7 @@ import { AlertifyService } from 'src/app/services/admin/alertify.service';
 export class DashboardComponent extends BaseComponent implements OnInit{
  
   constructor(private alertify:AlertifyService, spinner:NgxSpinnerService) {
-    super(spinner);
+    super(spinner)
   }
 
   ngOnInit(): void {

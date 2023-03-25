@@ -10,8 +10,7 @@ import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 export class ProductsComponent extends BaseComponent implements OnInit {
 
   constructor(spinner:NgxSpinnerService) {
-    super(spinner);
-
+    super(spinner)
   }
   ngOnInit(): void {
     this.showSpinner(SpinnerType.ballScaleMultiple);

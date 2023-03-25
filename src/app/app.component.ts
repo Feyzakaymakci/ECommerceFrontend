@@ -10,24 +10,8 @@ declare var $:any
 })
 export class AppComponent {
   title = 'ECommerceFrontend';
-  constructor(private toastrService:CustomToastrService){
-    toastrService.message("Merhaba", "Feyza", {
-      messageType:ToastrMessageType.Info ,
-      position:ToastrPosition.TopCenter
-    });
-    toastrService.message("Merhaba", "Feyza", {
-      messageType:ToastrMessageType.Success ,
-      position:ToastrPosition.TopCenter
-    });
-    
-    toastrService.message("Merhaba", "Feyza", {
-      messageType:ToastrMessageType.Error ,
-      position:ToastrPosition.TopCenter
-    });
-    toastrService.message("Merhaba", "Feyza", {
-      messageType:ToastrMessageType.Warning ,
-      position:ToastrPosition.TopCenter
-    });
+  constructor(){
+   
   }
 }
 

@@ -9,10 +9,12 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
+import { DeleteDirective } from './directives/admin/delete.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     
   ],
   imports: [

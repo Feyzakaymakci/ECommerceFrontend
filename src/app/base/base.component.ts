@@ -7,7 +7,7 @@ export class BaseComponent {
   showSpinner(spinnerNameType:SpinnerType){
     this.spinner.show(spinnerNameType);
 
-   setTimeout(() => this.hideSpinner(spinnerNameType), 1000); //Kaç sn duracağı
+   //setTimeout(() => this.hideSpinner(spinnerNameType), 1000); //Kaç sn duracağı
     } 
   
   hideSpinner(spinnerNameType:SpinnerType){ //seçilen spinner ın kapatılması için 

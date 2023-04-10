@@ -11,10 +11,12 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { DeleteDirective } from './directives/admin/delete.directive';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
+import { FileUploadComponent } from './services/common/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     
     
   ],

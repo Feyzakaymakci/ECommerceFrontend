@@ -4,7 +4,9 @@ import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { List_Product } from 'src/app/contracts/list_product';
+import { SelectProductImageDialogComponent } from 'src/app/dialogs/select-product-image-dialog/select-product-image-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
+import { DialogService } from 'src/app/services/common/dialog.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
 
 declare var $: any;
@@ -16,11 +18,14 @@ declare var $: any;
 })
 export class ListComponent extends BaseComponent implements OnInit{
  
-  constructor(spinner:NgxSpinnerService,private productService:ProductService,private alertifyService:AlertifyService) {
+  constructor(spinner:NgxSpinnerService,
+    private productService:ProductService,
+    private alertifyService:AlertifyService,
+    private dialogService:DialogService) {
     super(spinner)
   }
 
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate','updatedDate',`edit`,`delete`];
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate','updatedDate',`photos`,`edit`,`delete`];
   dataSource : MatTableDataSource < List_Product>= null; //Neyi listeleyeceğimizi buradaki veri kaynağından belirliyor olucaz.
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -36,13 +41,17 @@ this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertifyService.mes
 }))
   this.dataSource=new MatTableDataSource<List_Product>(allProducts.products);
   this.paginator.length=allProducts.totalCount;
-  this.dataSource.paginator = this.paginator;
 }
 
-  //delete(id, event) {
-  //  const img: HTMLImageElement = event.srcElement;
-  //  $(img.parentElement.parentElement).fadeOut(2000);
-  //}
+addProductImages(id:string){
+this.dialogService.openDialog({
+  componentType:SelectProductImageDialogComponent,
+  data:id,
+  options:{
+    width:"1400px"
+  }
+});
+}
 
 async pageChanged(){
   await this.getProducts();

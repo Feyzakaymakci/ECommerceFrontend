@@ -39,6 +39,7 @@ import { DialogModule } from '@angular/cdk/dialog';
     DialogModule,
     FileUploadModule,
     
+    
   ]
 })
 export class ProductsModule { }

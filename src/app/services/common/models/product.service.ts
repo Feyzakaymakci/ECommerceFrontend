@@ -51,13 +51,15 @@ export class ProductService {
 
     await firstValueFrom(deleteObservable);
   }
- async readImages(id:string): Promise<List_Product_Image[]> {
+ async readImages(id:string,successCallBack?: () => void): Promise<List_Product_Image[]> {
     const getObservable:Observable<List_Product_Image[]>= this.httpClientService.get<List_Product_Image[]>({
       action:"getproductimages",
       controller:"products",
     },id)
+    const images:List_Product_Image[]=await firstValueFrom(getObservable);
+    successCallBack();
 
-   return await firstValueFrom(getObservable);
+   return images;
   }
 
 }

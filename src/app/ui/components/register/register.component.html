@@ -5,8 +5,8 @@
             <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
                 <div class="form-group">
                     <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" formControlName="fullName" class="form-control" id="fullName" placeholder="Full Name">
-                    <div id="emailHelp" class="form-text"></div>
+                    <input type="text" formControlName="fullName" class="form-control" id="fullName" placeholder="Full Name" [ngClass]="{'is-invalid':submitted && component.fullName.errors}">
+                    <div id="emailHelp" class="form-text" ngIf="submitted && component.fullName.errors.required"> Please do not pass without writing full name.</div>
                   </div>
                 <div class="form-group">
                   <label for="userName" class="form-label">User Name</label>

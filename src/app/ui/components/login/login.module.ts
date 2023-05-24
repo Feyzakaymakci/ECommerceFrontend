@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from './register.component';
+import { LoginComponent } from './login.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    RegisterComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
-        path:"", component: RegisterComponent}
+        path:"", component: LoginComponent}
     ]),
-    ReactiveFormsModule
   ]
 })
-export class RegisterModule { }
+export class LoginModule { }

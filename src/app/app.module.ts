@@ -34,8 +34,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => localStorage.getItem("accessToken"),
-        allowedDomains: ["localhost:7131"]
+        tokenGetter: () => localStorage.getItem("accessToken"),  //Tüm isteklerde authorization olarak header a yerleştir
+        allowedDomains: ["localhost:7073"]
       }
     })
   ],

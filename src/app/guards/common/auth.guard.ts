@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt'
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../services/ui/custom-toastr.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from '../../base/base.component';
+import { _isAuthenticated } from 'src/app/services/common/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class AuthGuard implements CanActivate {
       expired = true;
     }
 
-    if (!token || expired) { //token yoksa veya expire edilmişse
+    if (!_isAuthenticated) { //token yoksa veya expire edilmişse
       this.router.navigate(["login"], { queryParams: { returnUrl: state.url } });
       this.toastrService.message("You have to login.", "Unauthorized access."
 

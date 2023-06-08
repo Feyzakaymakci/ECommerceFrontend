@@ -61,4 +61,12 @@ async googleLogin(user: SocialUser, callBackFunction?: () => void): Promise<any>
 
   callBackFunction();
 }
+async facebookLogin(user:SocialUser, callBackFunction?:()=>void):Promise<any>
+{
+this.httpClientService.post<SocialUser | TokenResponse>({
+  controller:"users",
+  action:"facebook-login"
+},
+user)
+}
 }

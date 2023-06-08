@@ -23,10 +23,18 @@ export class LoginComponent extends BaseComponent implements OnInit{
     socialAuthService.authState.subscribe(async (user: SocialUser) => {
       console.log(user)
       this.showSpinner(SpinnerType.BallAtom);
-      await userService.googleLogin(user, () => {
-        this.authService.identityCheck();
-        this.hideSpinner(SpinnerType.BallAtom);
-      })
+  switch(user.provider){
+    case "GOOGLE":
+    await userService.googleLogin(user, () => {
+      this.authService.identityCheck();
+      this.hideSpinner(SpinnerType.BallAtom);
+    })
+    break;
+
+    case "FACEBOOK":
+
+    break;
+  }
     });
   }
   ngOnInit(): void {
@@ -34,7 +42,14 @@ export class LoginComponent extends BaseComponent implements OnInit{
   }
  async login(usernameOrEmail: string, password: string) {
     this.showSpinner(SpinnerType.BallAtom);
-    await this.userService.login(usernameOrEmail, password, () => this.hideSpinner(SpinnerType.BallAtom));
+    await this.userService.login(usernameOrEmail, password, () => {
+      this.authService.identityCheck();
+      this.activatedRoute.queryParams.subscribe(params => {
+        const returnUrl: string = params["returnUrl"];
+        if (returnUrl)
+          this.router.navigate([returnUrl]);
+      });
+      this.hideSpinner(SpinnerType.BallAtom);
+    });
   }
 }
-

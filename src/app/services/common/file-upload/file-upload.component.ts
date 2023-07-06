@@ -55,7 +55,7 @@ export class FileUploadComponent {
                 position: Position.TopRight
               })
           } else {
-            this.customToastrService.message(message, "Başarılı.", {
+            this.customToastrService.message(message, "Successful.", {
               messageType: ToastrMessageType.Success,
               position: ToastrPosition.TopRight
             })

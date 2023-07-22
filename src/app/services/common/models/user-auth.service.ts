@@ -32,7 +32,7 @@ export class UserAuthService {
     callBackFunction();
   }
 
-  async refreshTokenLogin(refreshToken: string, callBackFunction?: (state) => void) : Promise<any> {
+  async refreshTokenLogin(refreshToken: string, callBackFunction?: (state) => void): Promise<any> {
     const observable: Observable<any | TokenResponse> = this.httpClientService.post({
       action: "refreshtokenlogin",
       controller: "auth"
@@ -51,7 +51,7 @@ export class UserAuthService {
       callBackFunction(false);
     }
   }
-  
+
   async googleLogin(user: SocialUser, callBackFunction?: () => void): Promise<any> {
     const observable: Observable<SocialUser | TokenResponse> = this.httpClientService.post<SocialUser | TokenResponse>({
       action: "google-login",
@@ -84,7 +84,7 @@ export class UserAuthService {
     if (tokenResponse) {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
       localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
-      
+
       this.toastrService.message("Facebook login successfully.", "Login successful", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight

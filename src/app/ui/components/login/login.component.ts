@@ -38,6 +38,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       }
     });
   }
+
   ngOnInit(): void {
   }
 
@@ -54,6 +55,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       this.hideSpinner(SpinnerType.BallAtom);
     });
   }
+
   facebookLogin() {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }

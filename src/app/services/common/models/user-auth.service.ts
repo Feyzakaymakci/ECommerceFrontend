@@ -64,7 +64,7 @@ export class UserAuthService {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
       localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
 
-      this.toastrService.message("Google üzerinden giriş başarıyla sağlanmıştır.", "Giriş Başarılı", {
+      this.toastrService.message("Google login successfully", "Login successfully", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
       });
@@ -85,12 +85,36 @@ export class UserAuthService {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
       localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
 
-      this.toastrService.message("Facebook üzerinden giriş başarıyla sağlanmıştır.", "Giriş Başarılı", {
+      this.toastrService.message("Facebook login successfully.", "Login successfully", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
       })
     }
 
     callBackFunction();
+  }
+
+  async passwordReset(email: string, callBackFunction?: () => void) {
+    const observable: Observable<any> = this.httpClientService.post({
+      controller: "auth",
+      action: "password-reset"
+    }, { email: email });
+
+    await firstValueFrom(observable);
+    callBackFunction();
+  }
+
+  async verifyResetToken(resetToken: string, userId: string, callBackFunction?: () => void): Promise<boolean> {
+    const observable: Observable<any> = this.httpClientService.post({
+      controller: "auth",
+      action: "verify-reset-token"
+    }, {
+      resetToken: resetToken,
+      userId: userId
+    });
+
+    const state: boolean = await firstValueFrom(observable);
+    callBackFunction();
+    return state;
   }
 }

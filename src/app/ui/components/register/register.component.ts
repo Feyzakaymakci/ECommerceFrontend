@@ -25,12 +25,12 @@ export class RegisterComponent extends BaseComponent implements OnInit{
   ngOnInit(): void {
 
     this.frm=this.formBuilder.group({ //Reactive olarak üzerinde çalışma yapacağımız formu modellemiş olduk. 
-      fullName:["", [  //İkinci dizide validation larımızı tanımlıyoruz.
+      nameSurname:["", [  //İkinci dizide validation larımızı tanımlıyoruz.
        Validators.required,
        Validators.maxLength(50),
        Validators.minLength(3)
       ]], 
-      userName:["", [
+      username:["", [
         Validators.required,
         Validators.maxLength(50),
         Validators.minLength(3)

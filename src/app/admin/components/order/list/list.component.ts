@@ -8,14 +8,12 @@ import { OrderDetailDialogComponent, OrderDetailDialogState } from '../../../../
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 import { DialogService } from '../../../../services/common/dialog.service';
 import { OrderService } from '../../../../services/common/models/order.service';
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent extends BaseComponent implements OnInit {
-
   constructor(spinner: NgxSpinnerService,
     private orderService: OrderService,
     private alertifyService: AlertifyService,
@@ -24,13 +22,12 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createdDate', 'viewdetail', 'delete'];
+  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createdDate', 'completed', 'viewdetail', 'delete'];
   dataSource: MatTableDataSource<List_Order> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   async getOrders() {
     this.showSpinner(SpinnerType.BallAtom);
-
     const allOrders: { totalOrderCount: number; orders: List_Order[] } = await this.orderService.getAllOrders(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertifyService.message(errorMessage, {
       dismissOthers: true,
       messageType: MessageType.Error,
@@ -44,8 +41,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
   async ngOnInit() {
     await this.getOrders();
-  }
-
+  }  
   showDetail(id: string) {
     this.dialogService.openDialog({
       componentType: OrderDetailDialogComponent,
@@ -55,5 +51,4 @@ export class ListComponent extends BaseComponent implements OnInit {
       }
     });
   }
-
 }
